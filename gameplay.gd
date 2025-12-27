@@ -50,10 +50,20 @@ func _update_health_display():
 func _check_face_matches_rules() -> bool:
 	# Check if current face matches ALL rules
 	for rule in rules:
+		var is_negated = rule.get("negated", false)
 		for feature in rule.keys():
+			if feature == "negated":
+				continue
 			if current_face_config.has(feature):
-				if current_face_config[feature] != rule[feature]:
-					return false
+				var values_match = current_face_config[feature] == rule[feature]
+				# Для отрицающего правила: лицо подходит, если значение НЕ совпадает
+				# Для положительного правила: лицо подходит, если значение совпадает
+				if is_negated:
+					if values_match:
+						return false
+				else:
+					if not values_match:
+						return false
 			else:
 				return false
 	return true

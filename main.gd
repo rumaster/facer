@@ -48,7 +48,9 @@ func _add_new_rule():
 	if available_features.size() > 0:
 		var random_feature = available_features.pick_random()
 		var random_value = feature_values[random_feature].pick_random()
-		rules.append({random_feature: random_value})
+		# Равно вероятно создаём положительное или отрицающее правило
+		var is_negated = randf() < 0.5
+		rules.append({random_feature: random_value, "negated": is_negated})
 
 func _show_rules():
 	# Hide gameplay if visible
