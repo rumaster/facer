@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1gog1p2p1jvg"]
+
+[ext_resource type="Script" uid="uid://bfre6ricnfi3i" path="res://FaceNode.gd" id="1_vy8td"]
+
+[node name="FaceNode" type="Node2D"]
+script = ExtResource("1_vy8td")
