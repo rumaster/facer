@@ -1,7 +1,10 @@
 extends Node2D
 
+# Exposed config for rule matching
+var config: Dictionary = {}
+
 func _ready():
-	var config = {
+	config = {
 		"face_shape": ["circle", "square", "oval", "triangle", "trapezoid"].pick_random(),
 		"eyes": ["circle", "square", "triangle", "half_up", "half_down", "lines"].pick_random(),
 		"nose": ["circle", "triangle", "line", "v"].pick_random(),
