@@ -104,10 +104,16 @@ func _update_rules_display():
 	else:
 		text += "Условия для смахивания [b]ВПРАВО[/b]:\n\n"
 		for rule in rules:
+			var is_negated = rule.get("negated", false)
 			for feature in rule.keys():
+				if feature == "negated":
+					continue
 				var feature_name = feature_translations.get(feature, feature)
 				var value_name = value_translations.get(rule[feature], rule[feature])
-				text += "[b]" + feature_name + "[/b] = " + value_name + "\n"
+				if is_negated:
+					text += "[b]" + feature_name + "[/b] ≠ " + value_name + "\n"
+				else:
+					text += "[b]" + feature_name + "[/b] = " + value_name + "\n"
 		text += "\n[color=green]Если условия совпадают → ВПРАВО[/color]\n"
 		text += "[color=red]Иначе → ВЛЕВО[/color]\n"
 
